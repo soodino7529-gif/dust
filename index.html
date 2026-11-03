@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="시도별 실시간 대기오염 측정 정보를 확인하는 앱">
+  <title>우리 동네 대기질</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 대기질 대시보드의 화면 구조와 한국어 안내 문구를 정의합니다. -->
+  <main class="app">
+    <header class="page-header">
+      <p class="eyebrow">실시간 대기질 정보</p>
+      <h1>우리 동네 대기질</h1>
+      <label class="region-label" for="region-select">시도 선택</label>
+      <select id="region-select" aria-label="시도 선택">
+        <option value="전국">전국</option>
+        <option value="서울">서울</option>
+        <option value="부산">부산</option>
+        <option value="대구">대구</option>
+        <option value="인천">인천</option>
+        <option value="광주">광주</option>
+        <option value="대전">대전</option>
+        <option value="울산">울산</option>
+        <option value="세종">세종</option>
+        <option value="경기">경기</option>
+        <option value="강원">강원</option>
+        <option value="충북">충북</option>
+        <option value="충남">충남</option>
+        <option value="전북">전북</option>
+        <option value="전남">전남</option>
+        <option value="경북">경북</option>
+        <option value="경남">경남</option>
+        <option value="제주">제주</option>
+      </select>
+    </header>
+
+    <section class="summary grade-unknown" id="air-summary" aria-labelledby="average-title">
+      <div class="summary-main">
+        <p class="summary-label"><span id="summary-region">전국</span> 공기 신호등</p>
+        <div class="air-status" aria-live="polite">
+          <span id="status-emoji" class="status-emoji" aria-hidden="true">⚪</span>
+          <span id="status-label">불러오는 중...</span>
+        </div>
+        <p class="average-value">
+          <span id="average-pm10">--</span><span class="unit">㎍/㎥</span>
+        </p>
+      </div>
+      <div class="summary-details">
+        <p id="air-advice" class="air-advice">측정 정보를 불러오는 중입니다.</p>
+        <p id="average-note" class="summary-note">불러오는 중...</p>
+      </div>
+    </section>
+
+    <section class="chart-section" aria-labelledby="chart-title">
+      <div class="section-heading">
+        <h2 id="chart-title">미세먼지 높은 측정소</h2>
+        <span class="station-count">상위 10개</span>
+      </div>
+      <p id="chart-message" class="chart-message" role="status" aria-live="polite">불러오는 중...</p>
+      <div class="chart-container">
+        <canvas id="station-chart" role="img" aria-label="미세먼지 수치가 높은 측정소 상위 10개 가로 막대그래프"></canvas>
+      </div>
+    </section>
+
+    <section class="measurements" aria-labelledby="measurements-title">
+      <div class="section-heading">
+        <h2 id="measurements-title">측정소별 대기질</h2>
+        <span id="station-count" class="station-count"></span>
+      </div>
+      <p id="status-message" class="status-message" role="status" aria-live="polite">불러오는 중...</p>
+      <div id="station-list" class="station-grid"></div>
+    </section>
+  </main>
+</body>
+</html>
